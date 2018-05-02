@@ -1,4 +1,5 @@
 let Enemy = function(x, y, moving) {
+  "use strict";
     this.x = x;
     this.y = y;
     this.moving = moving;
@@ -45,6 +46,7 @@ Player.prototype.update = function(dt){
    if (this.y < 0) {
        this.x = 200;
        this.y = 380;
+       swal("Woow!", "You Won!", "success");
    }
 }
 Player.prototype.render = function () {
@@ -52,6 +54,7 @@ Player.prototype.render = function () {
 }
 
 Player.prototype.handleInput = function(keyboard){
+
   if (keyboard == 'left' && this.x > 0) {
     this.x -= 100;
   }
@@ -79,7 +82,7 @@ let enemyPath = [60, 145, 230];
 let player = new Player(200,400);
 
 enemyPath.forEach(function(positionY) {
-  enemy = new Enemy(0, positionY, 190);
+  enemy = new Enemy(0, positionY, Math.floor(Math.random() * 190));
   allEnemies.push(enemy);
 });
 document.addEventListener('keyup', function(e) {
